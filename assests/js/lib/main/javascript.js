@@ -13,6 +13,7 @@ $(document).ready(function () {
 
 
     $('#searchinput').bind('keypress', function (e) {
+
         if (e.keyCode == 13) {
             var search_input = $(this).val();
             var bing_url = 'http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=' + search_input;
