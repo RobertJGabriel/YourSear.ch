@@ -20,8 +20,8 @@ app.controller("core", function ($scope, $http) {
     };
 
     function runApis(myValue) {
-        var google_url = 'http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=' + myValue;
-        var duckduckgo_url = 'http://api.duckduckgo.com/?q=' + myValue + '&format=json';
+        var google_url = 'http://ajax.googleapis.com/ajax/services/search/web?callback=JSON_CALLBACK&v=1.0&q=' + myValue;
+        var duckduckgo_url = 'http://api.duckduckgo.com/?callback=JSON_CALLBACK&q=' + myValue + '&format=json';
         //    var rottenTomatoes = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=3wu47t4b7vkjx2q4qq3hzwxg&q=' + encodeURI(myValue) + '&page_limit=1';
 
         fetch(duckduckgo_url, 'duck');
@@ -32,39 +32,39 @@ app.controller("core", function ($scope, $http) {
 
 
     function fetch(apiUrl, engine) {
-        $http.get(apiUrl)
-            .success(function (data) {
+
+        $http.jsonp(apiUrl).success(function (data) {
 
 
 
-                console.log(engine);
-                console.log(data);
+            console.log(engine);
+            console.log(data);
 
-                if (engine === 'duck') {
-                    title.push(data.Heading);
-                    urls.push(data.RelatedTopics[1].FirstURL);
-                    dis.push(data.RelatedTopics[1].Text);
-                    source.push("DuckDuckGo");
-                } else if (engine === 'movies') {
-                    title.push(data.movies.title);
-                    urls.push(data.RelatedTopics[1].FirstURL);
-                    dis.push(data.RelatedTopics[1].Text);
-                    source.push("Google");
+            if (engine === 'duck') {
+                title.push(data.Heading);
+                urls.push(data.RelatedTopics[1].FirstURL);
+                dis.push(data.RelatedTopics[1].Text);
+                source.push("DuckDuckGo");
+            } else if (engine === 'movies') {
+                title.push(data.movies.title);
+                urls.push(data.RelatedTopics[1].FirstURL);
+                dis.push(data.RelatedTopics[1].Text);
+                source.push("Google");
 
-                } else if (engine === 'google') {
-                    title.push(data.responseData.results[1].title);
-                    urls.push(data.responseData.results[1].unescapedUrl);
-                    dis.push(data.responseData.results[1].content);
-                    source.push("Google");
-                } else {
+            } else if (engine === 'google') {
+                title.push(data.responseData.results[1].title);
+                urls.push(data.responseData.results[1].unescapedUrl);
+                dis.push(data.responseData.results[1].content);
+                source.push("Google");
+            } else {
 
-                }
-
-
-                displayResults();
+            }
 
 
-            });
+            displayResults();
+
+
+        });
 
 
     }
