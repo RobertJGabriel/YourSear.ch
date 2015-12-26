@@ -13,7 +13,7 @@ app.controller("core", function ($scope, $http) {
     $scope.checkIfEnterKeyWasPressed = function ($event, myValue) {
         var keyCode = $event.which || $event.keyCode;
         if (keyCode === 13) {
-            fetch(myValue);
+            runApis(myValue);
 
         }
 
