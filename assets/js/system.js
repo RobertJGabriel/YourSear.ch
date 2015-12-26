@@ -6,7 +6,7 @@ app.controller("core", function ($scope, $http) {
     var dis = [];
     var source = [];
     $scope.init = function () {
-        fetch("nfl");
+        runApis("nfl");
 
     };
 
