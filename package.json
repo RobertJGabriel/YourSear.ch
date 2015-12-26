@@ -1,0 +1,17 @@
+{
+    "name": "YourSearch",
+    "description": "",
+    "author": "Robert Gabriel",
+    "dependencies": {},
+    "devDependencies": {
+        "gulp": "*",
+        "gulp-less": "*",
+        "gulp-minify-css": "*",
+        "gulp-uglify": "^1.4.0",
+        "gulp-util": "*",
+        "gulp-logger": "*",
+        "gulp-rename": "*"
+
+    },
+    "engine": "node >= 0.4.1"
+}
