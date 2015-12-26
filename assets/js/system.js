@@ -6,7 +6,7 @@ app.controller("core", function ($scope, $http) {
     var dis = [];
     var source = [];
     $scope.init = function () {
-        runApis("nfl");
+        //  runApis("nfl");
 
     };
 
@@ -34,12 +34,6 @@ app.controller("core", function ($scope, $http) {
     function fetch(apiUrl, engine) {
 
         $http.jsonp(apiUrl).success(function (data) {
-
-
-
-            console.log(engine);
-            console.log(data);
-
             if (engine === 'duck') {
                 title.push(data.Heading);
                 urls.push(data.RelatedTopics[1].FirstURL);
@@ -56,11 +50,7 @@ app.controller("core", function ($scope, $http) {
                 urls.push(data.responseData.results[1].unescapedUrl);
                 dis.push(data.responseData.results[1].content);
                 source.push("Google");
-            } else {
-
             }
-
-
             displayResults();
 
 
@@ -74,7 +64,7 @@ app.controller("core", function ($scope, $http) {
 
 
     function displayResults() {
-
+        $("#result").empty();
         var final = '';
         for (i = 0; i < urls.length; i++) {
 
